@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago - SBLTA</title>
+
+  <!-- css -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/templatemo.css">
+  <link rel="stylesheet" href="assets/css/custom.css">
+  <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #f4f6f7, #e9ecef);
+      font-family: "Segoe UI", sans-serif;
+    }
+    .payment-form {
+      max-width: 480px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      transition: all 0.3s ease-in-out;
+    }
+    .payment-form:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    }
+    .payment-form h1 {
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      font-weight: bold;
+      color: #198754;
+    }
+    .form-label {
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #333;
+    }
+    .form-control, .form-select {
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      transition: all 0.2s;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #198754;
+      box-shadow: 0 0 6px rgba(25, 135, 84, 0.4);
+    }
+    .btn-success {
+      font-size: 1rem;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s ease-in-out;
+    }
+    .btn-success:hover {
+      background: #157347;
+    }
+    .btn-outline-secondary {
+      border-radius: 8px;
+      padding: 10px;
+      transition: all 0.2s;
+    }
+    .btn-outline-secondary:hover {
+      background: #e9ecef;
+    }
+    .total-box {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 20px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #333;
+      border: 1px solid #dee2e6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="payment-form">
+    <h1 class="text-center">💳 Datos de Pago</h1>
+
+    <!-- Selección de método -->
+    <form id="payment-form">
+      <div class="mb-3">
+        <label for="payment-method" class="form-label">Método de Pago</label>
+        <select class="form-select" id="payment-method" required>
+          <option value="">-- Selecciona --</option>
+          <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+          <option value="nequi">Nequi</option>
+          <option value="bancolombia">Bancolombia Transferencia</option>
+          <option value="contraentrega">Pago Contraentrega</option>
+        </select>
+      </div>
+
+      <!-- Campos de tarjeta -->
+      <div id="card-fields" style="display: none;">
+        <div class="mb-3">
+          <label for="card-number" class="form-label">Número de Tarjeta</label>
+          <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456">
+        </div>
+        <div class="mb-3">
+          <label for="expiry-date" class="form-label">Fecha de Expiración (MM/AA)</label>
+          <input type="text" class="form-control" id="expiry-date" placeholder="MM/AA">
+        </div>
+        <div class="mb-3">
+          <label for="cvc" class="form-label">CVC</label>
+          <input type="text" class="form-control" id="cvc" placeholder="123">
+        </div>
+      </div>
+
+      <!-- Total -->
+      <div class="total-box">
+        Su compra total es de: $ <span id="etiqueta_total">0</span>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100 mt-3">✅ Confirmar Pago</button>
+    </form>
+
+    <!-- Enlace de regreso -->
+    <div class="text-center mt-3">
+      <a href="closet.html" class="btn btn-outline-secondary w-100">⬅ Volver al Clóset</a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const metodo = document.getElementById("payment-method");
+    const cardFields = document.getElementById("card-fields");
+    const etiqueta_total = document.getElementById("etiqueta_total");
+
+    // Mostrar/ocultar campos de tarjeta
+    metodo.addEventListener("change", () => {
+      if (metodo.value === "tarjeta") {
+        cardFields.style.display = "block";
+      } else {
+        cardFields.style.display = "none";
+      }
+    });
+
+    // Simular carrito (ejemplo)
+    let carrito = JSON.parse(localStorage.getItem("closet")) || [];
+    let total = carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
+    etiqueta_total.innerText = total.toLocaleString("es-CO");
+
+    // Validación del formulario
+    document.getElementById("payment-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      if (metodo.value === "") {
+        alert("⚠️ Selecciona un método de pago.");
+        return;
+      }
+      alert("✅ Pago procesado con éxito mediante " + metodo.options[metodo.selectedIndex].text);
+      window.location.href = "index.html"; // Redirige al inicio tras pagar
+    });
+  </script>
+</body>
+</html>

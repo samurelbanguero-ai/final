@@ -1,0 +1,63 @@
+<!-- pie.html -->
+<footer class="bg-dark text-light pt-5 pb-4">
+    <div class="container text-md-left">
+        <div class="row text-md-left">
+
+            <!-- Columna 1: Logo y descripción -->
+            <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold text-success">SBLTA</h5>
+                <p>
+                    Moda urbana hecha para expresarte. Encuentra camisetas, sudaderas y accesorios que destacan tu estilo único.
+                </p>
+            </div>
+
+            <!-- Columna 2: Enlaces rápidos -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold text-success">Enlaces</h5>
+                <p><a href="index.html" class="text-light text-decoration-none">Inicio</a></p>
+                <p><a href="productos.html" class="text-light text-decoration-none">Productos</a></p>
+                <p><a href="about.html" class="text-light text-decoration-none">Nosotros</a></p>
+                <p><a href="index.html#contacto" class="text-light text-decoration-none">Contacto</a></p>
+            </div>
+
+            <!-- Columna 3: Contacto -->
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold text-success">Contáctanos</h5>
+                <p><i class="fas fa-home mr-3"></i> Cali, Colombia</p>
+                <p><i class="fas fa-envelope mr-3"></i> contacto@sblta.com</p>
+                <p><i class="fas fa-phone mr-3"></i> +57 313 542 3614</p>
+                <p><i class="fab fa-whatsapp mr-3"></i> +57 313 542 3614</p>
+            </div>
+
+            <!-- Columna 4: Redes sociales -->
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold text-success">Síguenos</h5>
+                <a href="https://www.instagram.com/" target="_blank" class="btn btn-outline-light btn-floating m-1">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/" target="_blank" class="btn btn-outline-light btn-floating m-1">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://wa.me/573135423614" target="_blank" class="btn btn-outline-light btn-floating m-1">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <hr class="mb-4">
+
+        <!-- Copyright -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 col-lg-8">
+                <p class="text-center">
+                    © <span id="year"></span> SBLTA - Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Script para año automático -->
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
