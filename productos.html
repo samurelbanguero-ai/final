@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>SBLTA - Productos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explora los productos de SBLTA. Moda urbana y prendas exclusivas.">
+    <meta name="keywords" content="SBLTA, productos, ropa, moda urbana">
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/transparent-Photoroom.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/templatemo.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+</head>
+
+<body>
+    <!-- Menú -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">SBLTA</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Alternar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between"
+                id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="productos.html">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="closet.html">
+                                🛒 Clóset <span id="closet-count" class="badge bg-success">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Encabezado -->
+    <div class="container text-center py-5">
+        <h1 class="mb-3">👕 Productos</h1>
+        <p class="lead">Descubre la nueva colección de <strong>SBLTA</strong>.</p>
+    </div>
+<!-- Categorías -->
+  <div class="container py-4">
+    <h2 class="mb-4">Categorías</h2>
+    <div class="btn-group" role="group">
+      <button class="btn btn-outline-success" onclick="filtrarCategoria('')">Todos</button>
+      <button class="btn btn-outline-success" onclick="filtrarCategoria('camisetas')">Camisetas</button>
+      <button class="btn btn-outline-success" onclick="filtrarCategoria('sudaderas')">Sudaderas</button>
+      <button class="btn btn-outline-success" onclick="filtrarCategoria('accesorios')">Accesorios</button>
+    </div>
+  </div>
+
+  <!-- Lista de productos -->
+  <div class="container py-4">
+    <div class="row" id="lista_productos">
+      <!-- Productos Camisetas -->
+      <div class="col-md-4 mb-4 producto" data-categoria="camisetas">
+        <div class="card">
+          <img src="img/producto1.jpeg" class="card-img-top" alt="Camiseta Urbana">
+          <div class="card-body">
+            <h5 class="card-title">Camiseta Urbana</h5>
+            <p class="card-text">$79.900</p>
+            <a href="detalle_producto.html?codigo_producto=001" class="btn btn-success">Ver Detalle</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Productos Sudaderas -->
+      <div class="col-md-4 mb-4 producto" data-categoria="sudaderas">
+        <div class="card">
+          <img src="img/producto2.jpg" class="card-img-top" alt="Sudadera Oversize">
+          <div class="card-body">
+            <h5 class="card-title">Sudadera Oversize</h5>
+            <p class="card-text">$149.900</p>
+            <a href="detalle_producto.html?codigo_producto=002" class="btn btn-success">Ver Detalle</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Productos Accesorios -->
+      <div class="col-md-4 mb-4 producto" data-categoria="accesorios">
+        <div class="card">
+          <img src="img/gorra negra.jpg" class="card-img-top" alt="Gorra Negra">
+          <div class="card-body">
+            <h5 class="card-title">Gorra Negra</h5>
+            <p class="card-text">$59.900</p>
+            <a href="detalle_producto.html?codigo_producto=003" class="btn btn-success">Ver Detalle</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center py-3 mt-5">
+        <p>© <span id="year"></span> SBLTA - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- WhatsApp flotante -->
+    <a href="https://wa.me/573135423614" class="btn btn-success btn-lg"
+       style="position:fixed;bottom:20px;right:20px;border-radius:50%;" target="_blank">
+       <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Función para agregar producto al clóset
+        function agregarAlCloset(nombre, precio, imagen) {
+            let closet = JSON.parse(localStorage.getItem("closet")) || [];
+
+            // Verificar si ya existe
+            const index = closet.findIndex(item => item.nombre === nombre);
+            if (index >= 0) {
+                closet[index].cantidad += 1;
+            } else {
+                closet.push({ nombre, precio, imagen, cantidad: 1 });
+            }
+
+            localStorage.setItem("closet", JSON.stringify(closet));
+            actualizarContador();
+        }
+
+        // Actualizar contador en el menú
+        function actualizarContador() {
+            let closet = JSON.parse(localStorage.getItem("closet")) || [];
+            let totalCantidad = closet.reduce((acc, item) => acc + item.cantidad, 0);
+            document.getElementById("closet-count").textContent = totalCantidad;
+        }
+
+        // Inicializar contador
+        actualizarContador();
+    </script>
+   <script>
+    function filtrarCategoria(categoria) {
+      let productos = document.querySelectorAll('.producto');
+      productos.forEach(prod => {
+        if (categoria === '' || prod.dataset.categoria === categoria) {
+          prod.style.display = 'block';
+        } else {
+          prod.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

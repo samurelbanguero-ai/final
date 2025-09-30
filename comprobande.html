@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>SBLTA - Enviar Comprobante de Pago</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sube tu comprobante de pago para confirmar tu pedido en SBLTA.">
+    <meta name="keywords" content="SBLTA, comprobante, pago, tienda de ropa, subir comprobante">
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/transparent-Photoroom.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/templatemo.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+</head>
+
+<body>
+    <!-- Menú -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">SBLTA</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Alternar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between"
+                id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pagos.html">Pagos</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="comprobante.html">Comprobante</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Encabezado -->
+    <div class="container text-center py-5">
+        <h1 class="mb-3">📤 Enviar Comprobante de Pago</h1>
+        <p class="lead">Sube tu comprobante para confirmar tu pedido en <strong>SBLTA</strong>.</p>
+    </div>
+
+    <!-- Formulario de comprobante -->
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form id="comprobanteForm">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre completo</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="correo" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" id="correo" placeholder="tunombre@email.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pedido" class="form-label">Número de pedido</label>
+                        <input type="text" class="form-control" id="pedido" placeholder="#12345" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="archivo" class="form-label">Subir comprobante (imagen o PDF)</label>
+                        <input type="file" class="form-control" id="archivo" accept="image/*,.pdf" required>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg w-100">Enviar Comprobante</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center py-3 mt-5">
+        <p>© <span id="year"></span> SBLTA - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- WhatsApp flotante -->
+    <a href="https://wa.me/573135423614" class="btn btn-success btn-lg"
+       style="position:fixed;bottom:20px;right:20px;border-radius:50%;" target="_blank">
+       <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Simulación de envío: redirige a WhatsApp con los datos ingresados
+        document.getElementById("comprobanteForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const nombre = document.getElementById("nombre").value;
+            const correo = document.getElementById("correo").value;
+            const pedido = document.getElementById("pedido").value;
+
+            const mensaje = `Hola, soy ${nombre}. Mi correo es ${correo}. Quiero confirmar el pago del pedido ${pedido}.`;
+            window.open(`https://wa.me/573135423614?text=${encodeURIComponent(mensaje)}`, "_blank");
+        });
+    </script>
+</body>
+</html>
